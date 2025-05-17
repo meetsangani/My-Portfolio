@@ -20,10 +20,7 @@ import {
   GraduationCap,
   Calendar,
   Filter,
-  Moon,
-  Sun,
 } from "lucide-react"
-import { useTheme } from "next-themes"
 import ParticlesBackground from "@/components/particles-background"
 import TypedText from "@/components/typed-text"
 import ServiceCard from "@/components/service-card"
@@ -42,7 +39,6 @@ import { useState } from "react"
 export default function Home() {
   const [projectFilter, setProjectFilter] = useState("all");
   const [showResumeModal, setShowResumeModal] = useState(false);
-  const { theme, setTheme } = useTheme();
   
   // Project categories for filtering
   const projectCategories = [
@@ -238,48 +234,6 @@ export default function Home() {
                 are able to do. It is important to build a nice portfolio with a couple of apps.
                 <br /><br />
                 You should include at least one project in Java and one in Kotlin.
-              </div>
-              
-              {/* Theme Preferences Section */}
-              <div className="mt-8 p-6 bg-muted/50 rounded-lg">
-                <h5 className="text-lg font-semibold mb-3">Theme Preferences</h5>
-                <p className="mb-4">Personalize your browsing experience with your preferred theme:</p>
-                
-                <div className="flex justify-center gap-4">
-                  <Button
-                    onClick={() => setTheme("light")}
-                    variant={theme === "light" ? "default" : "outline"}
-                    className="flex items-center gap-2"
-                  >
-                    <Sun className="h-4 w-4" />
-                    Light
-                  </Button>
-                  
-                  <Button
-                    onClick={() => setTheme("dark")}
-                    variant={theme === "dark" ? "default" : "outline"}
-                    className="flex items-center gap-2"
-                  >
-                    <Moon className="h-4 w-4" />
-                    Dark
-                  </Button>
-                  
-                  <Button
-                    onClick={() => setTheme("system")}
-                    variant={theme === "system" ? "default" : "outline"}
-                    className="flex items-center gap-2"
-                  >
-                    <div className="flex">
-                      <Sun className="h-4 w-4" />
-                      <Moon className="h-4 w-4 ml-0.5" />
-                    </div>
-                    System
-                  </Button>
-                </div>
-                
-                <p className="mt-2 text-sm text-muted-foreground">
-                  Your preference is automatically saved for future visits
-                </p>
               </div>
             </div>
           </div>
