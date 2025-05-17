@@ -5,9 +5,8 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/mode-toggle"
-import { Menu, X, Moon, Sun } from "lucide-react"
+import { Menu, X } from "lucide-react"
 import { useMobile } from "@/hooks/use-mobile"
-import { useTheme } from "next-themes"
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -15,7 +14,6 @@ export default function Header() {
   const pathname = usePathname()
   const isMobile = useMobile()
   const [activeSection, setActiveSection] = useState("home")
-  const { theme, setTheme } = useTheme()
 
   // Handle scroll event to add shadow to header and track active section
   useEffect(() => {
@@ -88,11 +86,6 @@ export default function Header() {
     }
   }
 
-  // Add this function to handle theme toggle
-  const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark")
-  }
-
   return (
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
@@ -133,20 +126,6 @@ export default function Header() {
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </Button>
-        </div>
-
-        {/* Theme Toggle Button */}
-        <div className="flex items-center gap-4">
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            onClick={toggleTheme} 
-            className="rounded-full hover:bg-primary/10"
-            aria-label="Toggle theme"
-          >
-            <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-            <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
           </Button>
         </div>
       </div>
