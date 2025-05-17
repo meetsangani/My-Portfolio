@@ -251,35 +251,71 @@ export default function Home() {
           </h2>
 
           <div className="relative max-w-3xl mx-auto">
-            {/* Timeline center line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-primary/50"></div>
+            {/* Timeline center line - hidden on very small screens */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-primary/50 hidden sm:block"></div>
             
-            <TimelineItem 
-              year="2023 - Present"
-              title="Junior MERN Stack Developer"
-              organization="Imbuesoft LLP"
-              description="Working on full-stack web applications using MongoDB, Express.js, React.js, and Node.js. Building RESTful APIs and collaborating with UI/UX designers."
-              icon={<Briefcase />}
-              position="right"
-            />
+            {/* Mobile timeline - show only on very small screens */}
+            <div className="sm:hidden space-y-8 mb-8">
+              <div className="bg-muted/30 rounded-lg p-4 border-l-4 border-primary">
+                <div className="flex items-center mb-2">
+                  <Briefcase className="text-primary mr-2" />
+                  <h3 className="text-lg font-semibold">Junior MERN Stack Developer</h3>
+                </div>
+                <p className="text-sm text-muted-foreground mb-1">Imbuesoft LLP</p>
+                <p className="text-xs text-muted-foreground mb-2">2023 - Present</p>
+                <p className="text-sm">Working on full-stack web applications using MongoDB, Express.js, React.js, and Node.js. Building RESTful APIs and collaborating with UI/UX designers.</p>
+              </div>
+              
+              <div className="bg-muted/30 rounded-lg p-4 border-l-4 border-primary">
+                <div className="flex items-center mb-2">
+                  <GraduationCap className="text-primary mr-2" />
+                  <h3 className="text-lg font-semibold">Master of Computer Applications (MCA)</h3>
+                </div>
+                <p className="text-sm text-muted-foreground mb-1">Atmiya University, Rajkot</p>
+                <p className="text-xs text-muted-foreground mb-2">2023 - 2025</p>
+                <p className="text-sm">Pursuing advanced studies in computer applications with specialization in modern web technologies and software development methodologies.</p>
+              </div>
+              
+              <div className="bg-muted/30 rounded-lg p-4 border-l-4 border-primary">
+                <div className="flex items-center mb-2">
+                  <GraduationCap className="text-primary mr-2" />
+                  <h3 className="text-lg font-semibold">Bachelor of Computer Applications (BCA)</h3>
+                </div>
+                <p className="text-sm text-muted-foreground mb-1">Atmiya University, Rajkot</p>
+                <p className="text-xs text-muted-foreground mb-2">2020 - 2023</p>
+                <p className="text-sm">Completed undergraduate studies in computer applications with focus on programming fundamentals, web development, and database management.</p>
+              </div>
+            </div>
             
-            <TimelineItem 
-              year="2023 - 2025"
-              title="Master of Computer Applications (MCA)"
-              organization="Atmiya University, Rajkot"
-              description="Pursuing advanced studies in computer applications with specialization in modern web technologies and software development methodologies."
-              icon={<GraduationCap />}
-              position="left"
-            />
-            
-            <TimelineItem 
-              year="2020 - 2023"
-              title="Bachelor of Computer Applications (BCA)"
-              organization="Atmiya University, Rajkot"
-              description="Completed undergraduate studies in computer applications with focus on programming fundamentals, web development, and database management."
-              icon={<GraduationCap />}
-              position="right"
-            />
+            {/* Desktop timeline - hide on small screens */}
+            <div className="hidden sm:block">
+              <TimelineItem 
+                year="2023 - Present"
+                title="Junior MERN Stack Developer"
+                organization="Imbuesoft LLP"
+                description="Working on full-stack web applications using MongoDB, Express.js, React.js, and Node.js. Building RESTful APIs and collaborating with UI/UX designers."
+                icon={<Briefcase />}
+                position="right"
+              />
+              
+              <TimelineItem 
+                year="2023 - 2025"
+                title="Master of Computer Applications (MCA)"
+                organization="Atmiya University, Rajkot"
+                description="Pursuing advanced studies in computer applications with specialization in modern web technologies and software development methodologies."
+                icon={<GraduationCap />}
+                position="left"
+              />
+              
+              <TimelineItem 
+                year="2020 - 2023"
+                title="Bachelor of Computer Applications (BCA)"
+                organization="Atmiya University, Rajkot"
+                description="Completed undergraduate studies in computer applications with focus on programming fundamentals, web development, and database management."
+                icon={<GraduationCap />}
+                position="right"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -350,7 +386,44 @@ export default function Home() {
             </TabsList>
             
             <TabsContent value="technical" className="w-full">
-              <div className="grid grid-cols-1 md:grid-cols-5 gap-4 max-w-5xl mx-auto">
+              {/* Mobile view for technical skills */}
+              <div className="grid grid-cols-2 gap-3 md:hidden">
+                <div className="flex flex-col items-center justify-center p-3 bg-muted/30 rounded-lg">
+                  <FaHtml5 className="text-orange-500 text-3xl mb-1" />
+                  <span className="text-sm font-semibold text-orange-500 text-center">HTML/CSS</span>
+                </div>
+                <div className="flex flex-col items-center justify-center p-3 bg-muted/30 rounded-lg">
+                  <FaReact className="text-blue-500 text-3xl mb-1" />
+                  <span className="text-sm font-semibold text-blue-500 text-center">React</span>
+                </div>
+                <div className="flex flex-col items-center justify-center p-3 bg-muted/30 rounded-lg">
+                  <SiJavascript className="text-yellow-500 text-3xl mb-1" />
+                  <span className="text-sm font-semibold text-yellow-500 text-center">Javascript</span>
+                </div>
+                <div className="flex flex-col items-center justify-center p-3 bg-muted/30 rounded-lg">
+                  <FaPython className="text-purple-500 text-3xl mb-1" />
+                  <span className="text-sm font-semibold text-purple-500 text-center">Python</span>
+                </div>
+                <div className="flex flex-col items-center justify-center p-3 bg-muted/30 rounded-lg">
+                  <FaNodeJs className="text-green-500 text-3xl mb-1" />
+                  <span className="text-sm font-semibold text-green-500 text-center">Node.js</span>
+                </div>
+                <div className="flex flex-col items-center justify-center p-3 bg-muted/30 rounded-lg">
+                  <FaAndroid className="text-green-600 text-3xl mb-1" />
+                  <span className="text-sm font-semibold text-green-600 text-center">Android</span>
+                </div>
+                <div className="flex flex-col items-center justify-center p-3 bg-muted/30 rounded-lg">
+                  <FaPhp className="text-indigo-500 text-3xl mb-1" />
+                  <span className="text-sm font-semibold text-indigo-500 text-center">PHP</span>
+                </div>
+                <div className="flex flex-col items-center justify-center p-3 bg-muted/30 rounded-lg">
+                  <SiMysql className="text-blue-600 text-3xl mb-1" />
+                  <span className="text-sm font-semibold text-blue-600 text-center">SQL</span>
+                </div>
+              </div>
+              
+              {/* Desktop view for technical skills */}
+              <div className="hidden md:grid grid-cols-1 md:grid-cols-5 gap-4 max-w-5xl mx-auto">
                 <div className="flex flex-col items-center justify-center p-4 bg-muted/30 rounded-lg">
                   <FaHtml5 className="text-orange-500 text-4xl mb-2" />
                   <span className="text-lg font-semibold text-orange-500">HTML/CSS</span>
@@ -373,7 +446,7 @@ export default function Home() {
                 </div>
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-5 gap-4 max-w-5xl mx-auto mt-4">
+              <div className="hidden md:grid grid-cols-1 md:grid-cols-5 gap-4 max-w-5xl mx-auto mt-4">
                 <div className="flex flex-col items-center justify-center p-4 bg-muted/30 rounded-lg">
                   <FaAndroid className="text-green-600 text-4xl mb-2" />
                   <span className="text-lg font-semibold text-green-600">Android</span>
@@ -391,7 +464,28 @@ export default function Home() {
             </TabsContent>
             
             <TabsContent value="professional" className="w-full">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto">
+              {/* Mobile view for professional skills */}
+              <div className="grid grid-cols-2 gap-3 md:hidden">
+                <div className="flex flex-col items-center justify-center p-3 bg-muted/30 rounded-lg">
+                  <BsChatSquareDots className="text-primary text-3xl mb-1" />
+                  <span className="text-sm font-semibold text-primary text-center">Communication</span>
+                </div>
+                <div className="flex flex-col items-center justify-center p-3 bg-muted/30 rounded-lg">
+                  <FaLightbulb className="text-primary text-3xl mb-1" />
+                  <span className="text-sm font-semibold text-primary text-center">Problem Solving</span>
+                </div>
+                <div className="flex flex-col items-center justify-center p-3 bg-muted/30 rounded-lg">
+                  <FaUserFriends className="text-primary text-3xl mb-1" />
+                  <span className="text-sm font-semibold text-primary text-center">TeamWork</span>
+                </div>
+                <div className="flex flex-col items-center justify-center p-3 bg-muted/30 rounded-lg">
+                  <BsTrophy className="text-primary text-3xl mb-1" />
+                  <span className="text-sm font-semibold text-primary text-center">Leadership</span>
+                </div>
+              </div>
+              
+              {/* Desktop view for professional skills */}
+              <div className="hidden md:grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto">
                 <div className="flex flex-col items-center justify-center p-4 bg-muted/30 rounded-lg">
                   <BsChatSquareDots className="text-primary text-4xl mb-2" />
                   <span className="text-lg font-semibold text-primary">Communication</span>

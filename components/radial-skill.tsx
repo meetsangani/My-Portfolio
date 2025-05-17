@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { useInView } from "react-intersection-observer"
+import { useMobile } from "@/hooks/use-mobile"
 
 interface RadialSkillProps {
   name: string
@@ -14,6 +15,14 @@ export default function RadialSkill({ name, percentage }: RadialSkillProps) {
     triggerOnce: true,
     threshold: 0.1,
   })
+  
+  const isMobile = useMobile(640)
+  
+  // Responsive dimensions
+  const size = isMobile ? 24 : 32
+  const radius = isMobile ? 60 : 70
+  const strokeWidth = isMobile ? 6 : 8
+  const fontSize = isMobile ? "text-xl" : "text-2xl"
 
   useEffect(() => {
     if (inView) {
@@ -26,13 +35,12 @@ export default function RadialSkill({ name, percentage }: RadialSkillProps) {
   }, [inView, percentage])
 
   // Calculate the stroke dash offset based on the progress
-  const radius = 70
   const circumference = 2 * Math.PI * radius
   const strokeDashoffset = circumference - (progress / 100) * circumference
 
   return (
     <div ref={ref} className="flex flex-col items-center">
-      <div className="relative w-32 h-32">
+      <div className={`relative w-${size} h-${size} sm:w-32 sm:h-32`}>
         <svg className="w-full h-full" viewBox="0 0 200 200">
           {/* Background circle */}
           <circle
@@ -41,7 +49,7 @@ export default function RadialSkill({ name, percentage }: RadialSkillProps) {
             r={radius}
             fill="none"
             stroke="currentColor"
-            strokeWidth="8"
+            strokeWidth={strokeWidth}
             className="text-muted opacity-20"
           />
 
@@ -52,7 +60,7 @@ export default function RadialSkill({ name, percentage }: RadialSkillProps) {
             r={radius}
             fill="none"
             stroke="currentColor"
-            strokeWidth="8"
+            strokeWidth={strokeWidth}
             strokeLinecap="round"
             strokeDasharray={circumference}
             strokeDashoffset={strokeDashoffset}
@@ -65,7 +73,7 @@ export default function RadialSkill({ name, percentage }: RadialSkillProps) {
             y="100"
             textAnchor="middle"
             dominantBaseline="middle"
-            className="text-2xl font-bold"
+            className={fontSize + " font-bold"}
             fill="currentColor"
           >
             {progress}%
@@ -73,7 +81,7 @@ export default function RadialSkill({ name, percentage }: RadialSkillProps) {
         </svg>
       </div>
 
-      <span className="mt-4 font-medium text-center">{name}</span>
+      <span className="mt-2 sm:mt-4 text-sm sm:text-base font-medium text-center">{name}</span>
     </div>
   )
 }
