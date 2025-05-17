@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/mode-toggle"
 import { Menu, X } from "lucide-react"
 import { useMobile } from "@/hooks/use-mobile"
+import ThemeToggle from "./theme-toggle"
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -127,6 +128,12 @@ export default function Header() {
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </Button>
+        </div>
+
+        {/* Theme Toggle Button */}
+        <div className="flex items-center gap-4">
+          {/* Use the theme toggle component */}
+          <ThemeToggle />
         </div>
       </div>
 
