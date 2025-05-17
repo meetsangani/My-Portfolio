@@ -9,7 +9,7 @@ import type {
 } from "@/components/ui/toast"
 
 const TOAST_LIMIT = 1
-const TOAST_REMOVE_DELAY = 1000000
+const TOAST_REMOVE_DELAY = 8000 // Increased from 5000 to 8000 ms (8 seconds)
 
 type ToasterToast = ToastProps & {
   id: string
@@ -142,7 +142,7 @@ function dispatch(action: Action) {
 
 type Toast = Omit<ToasterToast, "id">
 
-function toast({ ...props }: Toast) {
+function toast({ ...props }: Toast & { duration?: number }) {
   const id = genId()
 
   const update = (props: ToasterToast) =>
@@ -152,10 +152,16 @@ function toast({ ...props }: Toast) {
     })
   const dismiss = () => dispatch({ type: "DISMISS_TOAST", toastId: id })
 
+  // Use custom duration if provided
+  const customDelay = props.duration || TOAST_REMOVE_DELAY
+  
+  // Remove duration from props as it's not part of ToasterToast
+  const { duration, ...restProps } = props
+
   dispatch({
     type: "ADD_TOAST",
     toast: {
-      ...props,
+      ...restProps,
       id,
       open: true,
       onOpenChange: (open) => {
@@ -163,6 +169,13 @@ function toast({ ...props }: Toast) {
       },
     },
   })
+
+  // Set custom timeout for this specific toast
+  if (customDelay !== TOAST_REMOVE_DELAY) {
+    setTimeout(() => {
+      dispatch({ type: "DISMISS_TOAST", toastId: id })
+    }, customDelay)
+  }
 
   return {
     id: id,
