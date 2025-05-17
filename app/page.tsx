@@ -21,6 +21,9 @@ import {
   Calendar,
   Filter,
 } from "lucide-react"
+import { FaHtml5, FaReact, FaNodeJs, FaPython, FaUserFriends, FaLightbulb, FaAndroid, FaPhp } from "react-icons/fa"
+import { SiJavascript, SiMysql } from "react-icons/si"
+import { BsChatSquareDots, BsTrophy } from "react-icons/bs"
 import ParticlesBackground from "@/components/particles-background"
 import TypedText from "@/components/typed-text"
 import ServiceCard from "@/components/service-card"
@@ -131,11 +134,11 @@ export default function Home() {
             <br />
             2023 - Present
             <br />
-            .Developing full-stack web applications using MongoDB, Express.js, React.js, and Node.js
+            • Developing full-stack web applications using MongoDB, Express.js, React.js, and Node.js
             <br />
-            .Building RESTful APIs and integrating with frontend
+            • Building RESTful APIs and integrating with frontend
             <br />
-            .Collaborating with UI/UX designers for responsive interfaces
+            • Collaborating with UI/UX designers for responsive interfaces
           </div>
 
           <div className="flex justify-center md:justify-start space-x-4 mb-6 animate-slideLeft">
@@ -339,8 +342,7 @@ export default function Home() {
         <div className="container mx-auto">
           <h2 className="text-3xl md:text-5xl font-bold text-center mb-12">
             My <span className="text-primary">Skills</span>
-          </h2
-          >
+          </h2>
           <Tabs defaultValue="technical" className="w-full">
             <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-8">
               <TabsTrigger value="technical">Technical Skills</TabsTrigger>
@@ -348,21 +350,64 @@ export default function Home() {
             </TabsList>
             
             <TabsContent value="technical" className="w-full">
-              <div className="space-y-6 max-w-3xl mx-auto">
-                <SkillBar name="HTML/CSS" percentage={90} icon="html" color="text-orange-500" />
-                <SkillBar name="React" percentage={85} icon="react" color="text-blue-500" />
-                <SkillBar name="Javascript" percentage={80} icon="javascript" color="text-yellow-500" />
-                <SkillBar name="Python" percentage={50} icon="python" color="text-purple-500" />
-                <SkillBar name="Node.js" percentage={90} icon="nodejs" color="text-green-500" />
+              <div className="grid grid-cols-1 md:grid-cols-5 gap-4 max-w-5xl mx-auto">
+                <div className="flex flex-col items-center justify-center p-4 bg-muted/30 rounded-lg">
+                  <FaHtml5 className="text-orange-500 text-4xl mb-2" />
+                  <span className="text-lg font-semibold text-orange-500">HTML/CSS</span>
+                </div>
+                <div className="flex flex-col items-center justify-center p-4 bg-muted/30 rounded-lg">
+                  <FaReact className="text-blue-500 text-4xl mb-2" />
+                  <span className="text-lg font-semibold text-blue-500">React</span>
+                </div>
+                <div className="flex flex-col items-center justify-center p-4 bg-muted/30 rounded-lg">
+                  <SiJavascript className="text-yellow-500 text-4xl mb-2" />
+                  <span className="text-lg font-semibold text-yellow-500">Javascript</span>
+                </div>
+                <div className="flex flex-col items-center justify-center p-4 bg-muted/30 rounded-lg">
+                  <FaPython className="text-purple-500 text-4xl mb-2" />
+                  <span className="text-lg font-semibold text-purple-500">Python</span>
+                </div>
+                <div className="flex flex-col items-center justify-center p-4 bg-muted/30 rounded-lg">
+                  <FaNodeJs className="text-green-500 text-4xl mb-2" />
+                  <span className="text-lg font-semibold text-green-500">Node.js</span>
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-5 gap-4 max-w-5xl mx-auto mt-4">
+                <div className="flex flex-col items-center justify-center p-4 bg-muted/30 rounded-lg">
+                  <FaAndroid className="text-green-600 text-4xl mb-2" />
+                  <span className="text-lg font-semibold text-green-600">Android</span>
+                </div>
+                <div className="flex flex-col items-center justify-center p-4 bg-muted/30 rounded-lg">
+                  <FaPhp className="text-indigo-500 text-4xl mb-2" />
+                  <span className="text-lg font-semibold text-indigo-500">PHP</span>
+                </div>
+                <div className="flex flex-col items-center justify-center p-4 bg-muted/30 rounded-lg">
+                  <SiMysql className="text-blue-600 text-4xl mb-2" />
+                  <span className="text-lg font-semibold text-blue-600">SQL</span>
+                </div>
+                <div className="col-span-2"></div>
               </div>
             </TabsContent>
             
             <TabsContent value="professional" className="w-full">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto">
-                <RadialSkill name="Communication" percentage={65} />
-                <RadialSkill name="Problem Solving" percentage={70} />
-                <RadialSkill name="TeamWork" percentage={90} />
-                <RadialSkill name="Leadership" percentage={60} />
+                <div className="flex flex-col items-center justify-center p-4 bg-muted/30 rounded-lg">
+                  <BsChatSquareDots className="text-primary text-4xl mb-2" />
+                  <span className="text-lg font-semibold text-primary">Communication</span>
+                </div>
+                <div className="flex flex-col items-center justify-center p-4 bg-muted/30 rounded-lg">
+                  <FaLightbulb className="text-primary text-4xl mb-2" />
+                  <span className="text-lg font-semibold text-primary">Problem Solving</span>
+                </div>
+                <div className="flex flex-col items-center justify-center p-4 bg-muted/30 rounded-lg">
+                  <FaUserFriends className="text-primary text-4xl mb-2" />
+                  <span className="text-lg font-semibold text-primary">TeamWork</span>
+                </div>
+                <div className="flex flex-col items-center justify-center p-4 bg-muted/30 rounded-lg">
+                  <BsTrophy className="text-primary text-4xl mb-2" />
+                  <span className="text-lg font-semibold text-primary">Leadership</span>
+                </div>
               </div>
             </TabsContent>
           </Tabs>
@@ -521,7 +566,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="py-6 bg-background border-t">
         <div className="container mx-auto text-center">
-          <p>Developed with love by Meet Sangani © {new Date().getFullYear()}</p>
+          <p>Developed by Meet Sangani ©{new Date().getFullYear()}</p>
         </div>
       </footer>
 
