@@ -1,7 +1,7 @@
 "use client"
 
-import { useState } from "react"
-import { X, ChevronLeft, ChevronRight, Download } from "lucide-react"
+import { useState, useEffect } from "react"
+import { X, Download, Maximize, Minimize } from "lucide-react"
 import { Button } from "./ui/button"
 
 interface ResumeModalProps {
@@ -9,19 +9,25 @@ interface ResumeModalProps {
 }
 
 export default function ResumeModal({ onClose }: ResumeModalProps) {
-  const [currentPage, setCurrentPage] = useState(1)
-  const totalPages = 2 // Assuming the resume has 2 pages
+  const [isFullScreen, setIsFullScreen] = useState(false)
 
-  const nextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        if (isFullScreen) {
+          setIsFullScreen(false)
+        } else {
+          onClose()
+        }
+      }
     }
-  }
 
-  const prevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1)
-    }
+    window.addEventListener("keydown", handleKeyDown)
+    return () => window.removeEventListener("keydown", handleKeyDown)
+  }, [onClose, isFullScreen])
+
+  const toggleFullScreen = () => {
+    setIsFullScreen(!isFullScreen)
   }
 
   // Prevent clicks inside the modal from closing it
@@ -31,16 +37,30 @@ export default function ResumeModal({ onClose }: ResumeModalProps) {
 
   return (
     <div 
-      className="fixed inset-0 flex items-center justify-center z-50 bg-black/70 backdrop-blur-sm p-4"
+      className={`fixed inset-0 z-50 flex items-center justify-center bg-black/70 transition-all duration-300 ${
+        isFullScreen ? 'p-0' : 'p-4'
+      }`}
       onClick={onClose}
     >
       <div 
-        className="bg-card rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] flex flex-col"
+        className={`bg-card rounded-lg flex flex-col transition-all duration-300 ${
+          isFullScreen 
+            ? 'w-full h-full rounded-none' 
+            : 'w-full max-w-4xl h-[90vh]'
+        }`}
         onClick={handleModalClick}
       >
-        <div className="flex items-center justify-between p-4 border-b">
+        <div className="flex justify-between items-center p-4 border-b">
           <h2 className="text-xl font-semibold">Resume Preview</h2>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleFullScreen}
+              aria-label={isFullScreen ? "Exit full screen" : "View in full screen"}
+            >
+              {isFullScreen ? <Minimize className="h-5 w-5" /> : <Maximize className="h-5 w-5" />}
+            </Button>
             <a 
               href="/MEET_RESUME.pdf" 
               download
@@ -49,43 +69,34 @@ export default function ResumeModal({ onClose }: ResumeModalProps) {
               <Download className="h-4 w-4" />
               Download
             </a>
-            <Button variant="ghost" size="icon" onClick={onClose}>
-              <X className="h-5 w-5" />
-            </Button>
+            {!isFullScreen && (
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={onClose}
+                aria-label="Close resume"
+              >
+                <X className="h-5 w-5" />
+              </Button>
+            )}
           </div>
         </div>
         
         <div className="flex-1 overflow-auto p-4 flex justify-center">
           <iframe 
-            src={`/MEET_RESUME.pdf#page=${currentPage}`} 
-            className="w-full h-full border rounded"
+            src="/MEET_RESUME.pdf" 
+            className="w-full h-full border-0"
             title="Resume Preview"
           />
         </div>
         
-        <div className="border-t p-3 flex items-center justify-between">
-          <div className="text-sm">
-            Page {currentPage} of {totalPages}
-          </div>
-          <div className="flex gap-2">
-            <Button 
-              variant="outline" 
-              size="icon" 
-              onClick={prevPage}
-              disabled={currentPage === 1}
-            >
-              <ChevronLeft className="h-4 w-4" />
-            </Button>
-            <Button 
-              variant="outline" 
-              size="icon" 
-              onClick={nextPage}
-              disabled={currentPage === totalPages}
-            >
-              <ChevronRight className="h-4 w-4" />
+        {isFullScreen && (
+          <div className="p-4 border-t">
+            <Button onClick={() => setIsFullScreen(false)} className="ml-auto block">
+              Exit Full Screen
             </Button>
           </div>
-        </div>
+        )}
       </div>
     </div>
   )

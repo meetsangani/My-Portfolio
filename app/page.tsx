@@ -179,20 +179,6 @@ export default function Home() {
                 <Briefcase className="h-5 w-5" />
               </Button>
             </Link>
-            <Link
-              href="/MEET_RESUME.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Download Resume"
-            >
-              <Button
-                size="icon"
-                variant="outline"
-                className="rounded-full w-10 h-10 border-primary hover:bg-primary hover:text-primary-foreground transition-all"
-              >
-                <Download className="h-5 w-5" />
-              </Button>
-            </Link>
           </div>
 
           <div className="animate-slideTop flex space-x-4">
