@@ -62,7 +62,7 @@ export default function ResumeModal({ onClose }: ResumeModalProps) {
               {isFullScreen ? <Minimize className="h-5 w-5" /> : <Maximize className="h-5 w-5" />}
             </Button>
             <a 
-              href="/MEET_RESUME.pdf" 
+              href="/Meet_Sangani_Resume.pdf" 
               download
               className="flex items-center gap-1 text-primary hover:underline"
             >
@@ -84,7 +84,7 @@ export default function ResumeModal({ onClose }: ResumeModalProps) {
         
         <div className="flex-1 overflow-auto p-4 flex justify-center">
           <iframe 
-            src="/MEET_RESUME.pdf" 
+            src="/Meet_Sangani_Resume.pdf" 
             className="w-full h-full border-0"
             title="Resume Preview"
           />
