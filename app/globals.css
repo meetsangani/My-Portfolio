@@ -148,6 +148,16 @@
     display: inline-block;
     animation: loadingDots 1.5s infinite;
   }
+  
+  /* Carousel navigation hover effects */
+  .carousel-nav-hover {
+    transition: all 0.2s ease;
+  }
+
+  .carousel-nav-hover:hover {
+    transform: scale(1.1);
+    background-color: hsl(var(--background) / 0.95);
+  }
 }
 
 /* Keyframe animations */

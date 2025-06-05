@@ -57,9 +57,9 @@ export default function Home() {
       id: 1,
       title: "TaskAssigner",
       description: "A comprehensive task management system with time tracking and task assignment features built with MERN stack.",
-      image: "/placeholder.svg?height=200&width=400",
+      image: "/TaskManager.png", // Make sure this image exists
       modalId: "taskassigner-modal",
-      githubUrl: "https://github.com/meetsangani",
+      githubUrl: "https://github.com/meetsangani/TaskAssigner",
       categories: ["web", "mern"],
     },
     {
@@ -68,7 +68,7 @@ export default function Home() {
       description: "A versatile MERN stack application for code recording with real-time editing, multiple language support, and AI assistance.",
       image: "/CODO_RECORDING.mp4",  // Adding the leading slash to correctly reference from public folder
       modalId: "codo-modal",
-      githubUrl: "https://github.com/meetsangani",
+      githubUrl: "https://github.com/meetsangani/Online-Compiler",
       isVideo: true,
       categories: ["web", "mern"],
     },
@@ -76,18 +76,18 @@ export default function Home() {
       id: 3,
       title: "Portfolio Website",
       description: "Personal portfolio website showcasing my skills, projects and services built with HTML, CSS and JavaScript.",
-      image: "/placeholder.svg?height=200&width=400",
+      image: "/portfolio.png", // Make sure this image exists
       modalId: "portfolio-modal",
-      githubUrl: "https://github.com/meetsangani",
+      githubUrl: "https://github.com/meetsangani/My-Portfolio",
       categories: ["web"],
     },
     {
       id: 4,
-      title: "Shopping App",
+      title: "NAAC-LLM-REPORT",
       description: "Mobile e-commerce application built with React Native, featuring product browsing, cart management, and secure checkout.",
-      image: "/placeholder.svg?height=200&width=400",
-      modalId: "shopping-modal",
-      githubUrl: "https://github.com/meetsangani",
+      image: "/NAAC.png", // Make sure this image exists
+      modalId: "NAAC-modal",
+      githubUrl: "https://github.com/meetsangani/LLM-NACC-REPORT-ASSSSOR",
       categories: ["mobile"],
     },
   ];

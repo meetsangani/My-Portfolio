@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import Image from "next/image"
-import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import {
@@ -13,7 +12,8 @@ import {
   DialogDescription,
   DialogClose,
 } from "@/components/ui/dialog"
-import { X, Github, Play, Pause } from "lucide-react"
+import { Github, ExternalLink, X, Play, Pause } from "lucide-react"
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
 
 interface ProjectCardProps {
   title: string
@@ -35,6 +35,14 @@ export default function ProjectCard({
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
 
+  // Updated images for TaskAssigner slider with fallback
+  const taskAssignerImages = [
+    "/TaskManager.png",
+    "/TaskDashboard.png", 
+    "/learning.png",
+    "/HrMainScreen.png"
+  ].filter(Boolean) // Remove any undefined/null values
+
   // Modal content based on modalId
   const getModalContent = () => {
     switch (modalId) {
@@ -43,6 +51,28 @@ export default function ProjectCard({
           title: "TaskAssigner Project",
           content: (
             <>
+              {/* Slider for TaskAssigner */}
+              <div className="mb-6">
+                <Carousel className="w-full max-w-2xl mx-auto relative">
+                  <CarouselContent>
+                    {taskAssignerImages.map((imageSrc, index) => (
+                      <CarouselItem key={index}>
+                        <div className="relative h-64 md:h-80 w-full">
+                          <Image
+                            src={imageSrc}
+                            alt={`TaskAssigner Screenshot ${index + 1}`}
+                            fill
+                            className="object-cover rounded-lg"
+                          />
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious className="hover:scale-110 transition-transform" />
+                  <CarouselNext className="hover:scale-110 transition-transform" />
+                </Carousel>
+              </div>
+
               <h3 className="text-lg font-semibold mt-4 mb-2">Project Overview:</h3>
               <p className="mb-4">
                 TaskAssigner is a comprehensive task management system built using the MERN stack. It allows users to
@@ -51,31 +81,29 @@ export default function ProjectCard({
 
               <h3 className="text-lg font-semibold mt-4 mb-2">Key Features:</h3>
               <ul className="list-disc pl-5 space-y-1 mb-4">
-                <li>User authentication and authorization with JWT</li>
-                <li>Task creation with priority levels and deadlines</li>
-                <li>Task assignment to team members</li>
-                <li>Real-time status updates</li>
-                <li>Time tracking for tasks</li>
+                <li>User authentication and authorization</li>
+                <li>Task creation, assignment, and tracking</li>
+                <li>Real-time notifications</li>
                 <li>Dashboard with analytics</li>
-                <li>RESTful API integration</li>
+                <li>Team collaboration features</li>
+                <li>Progress monitoring and reporting</li>
               </ul>
 
               <h3 className="text-lg font-semibold mt-4 mb-2">Technologies Used:</h3>
               <div className="flex flex-wrap gap-2 mb-4">
-                {["MongoDB", "Express.js", "React.js", "Node.js", "Redux", "REST API", "JWT", "Axios"].map((tech) => (
-                  <span key={tech} className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
-                    {tech}
-                  </span>
-                ))}
+                <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">MongoDB</span>
+                <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Express.js</span>
+                <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">React.js</span>
+                <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Node.js</span>
+                <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">JWT Authentication</span>
               </div>
 
               <h3 className="text-lg font-semibold mt-4 mb-2">API Implementation:</h3>
               <ul className="list-disc pl-5 space-y-1">
-                <li>GET /api/tasks - Retrieve all tasks</li>
-                <li>GET /api/tasks/:id - Retrieve specific task</li>
-                <li>POST /api/tasks - Create new task</li>
-                <li>PUT /api/tasks/:id - Update task status</li>
-                <li>DELETE /api/tasks/:id - Delete task</li>
+                <li>RESTful API design with Express.js</li>
+                <li>MongoDB database integration</li>
+                <li>JWT token-based authentication</li>
+                <li>Real-time updates with Socket.io</li>
               </ul>
             </>
           ),
@@ -93,20 +121,19 @@ export default function ProjectCard({
 
               <h3 className="text-lg font-semibold mt-4 mb-2">Key Features:</h3>
               <ul className="list-disc pl-5 space-y-1 mb-4">
-                <li>Real-time collaborative code editor</li>
+                <li>Real-time code editing and collaboration</li>
+                <li>Screen and code recording capabilities</li>
                 <li>Multiple programming language support</li>
-                <li>Image-to-code conversion using AI</li>
-                <li>Session recording and playback</li>
-                <li>Code snippet sharing and exporting</li>
+                <li>AI-powered code assistance</li>
+                <li>Live coding sessions</li>
               </ul>
 
               <h3 className="text-lg font-semibold mt-4 mb-2">Technologies Used:</h3>
               <div className="flex flex-wrap gap-2">
-                {["MongoDB", "Express.js", "React.js", "Node.js", "Socket.IO", "Monaco Editor"].map((tech) => (
-                  <span key={tech} className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
-                    {tech}
-                  </span>
-                ))}
+                <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">React.js</span>
+                <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Node.js</span>
+                <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Socket.io</span>
+                <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">MongoDB</span>
               </div>
             </>
           ),
@@ -124,31 +151,18 @@ export default function ProjectCard({
 
               <h3 className="text-lg font-semibold mt-4 mb-2">Key Features:</h3>
               <ul className="list-disc pl-5 space-y-1 mb-4">
-                <li>Responsive design for all device sizes</li>
-                <li>Dark/Light theme toggle</li>
-                <li>Interactive particle background</li>
-                <li>Animated skill progress bars</li>
-                <li>Project showcase with modal details</li>
-                <li>Contact form with email integration</li>
-                <li>Smooth scrolling and section animations</li>
+                <li>Responsive design for all devices</li>
+                <li>Interactive animations and effects</li>
+                <li>Contact form integration</li>
+                <li>Project showcase with modals</li>
+                <li>Skills visualization</li>
               </ul>
 
               <h3 className="text-lg font-semibold mt-4 mb-2">Technologies Used:</h3>
               <div className="flex flex-wrap gap-2">
-                {[
-                  "HTML5",
-                  "CSS3",
-                  "JavaScript",
-                  "Particles.js",
-                  "Typed.js",
-                  "Web3Forms",
-                  "Responsive Design",
-                  "CSS Animations",
-                ].map((tech) => (
-                  <span key={tech} className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
-                    {tech}
-                  </span>
-                ))}
+                <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Next.js</span>
+                <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">TypeScript</span>
+                <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Tailwind CSS</span>
               </div>
             </>
           ),
@@ -182,23 +196,21 @@ export default function ProjectCard({
           {isVideo ? (
             <div className="relative w-full h-full">
               <video
+                id="project-video"
+                src={image}
                 className="w-full h-full object-cover"
-                // poster="/placeholder.svg"
                 muted
                 loop
-                id="project-video"
-                onPlay={() => setIsPlaying(true)}
-                onPause={() => setIsPlaying(false)}
-              >
-                <source src={image} type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
+              />
               <button
-                className="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/40 transition-colors"
                 onClick={handleVideoToggle}
-                aria-label={isPlaying ? "Pause video" : "Play video"}
+                className="absolute inset-0 flex items-center justify-center bg-black/50 hover:bg-black/30 transition-colors"
               >
-                {isPlaying ? <Pause className="w-12 h-12 text-white" /> : <Play className="w-12 h-12 text-white" />}
+                {isPlaying ? (
+                  <Pause className="h-12 w-12 text-white" />
+                ) : (
+                  <Play className="h-12 w-12 text-white" />
+                )}
               </button>
             </div>
           ) : (
@@ -218,22 +230,19 @@ export default function ProjectCard({
 
           <div className="flex gap-3">
             <Button
-              variant="outline"
-              className="flex-1 rounded-full border-primary text-primary hover:bg-primary hover:text-primary-foreground"
               onClick={() => setIsModalOpen(true)}
+              className="flex-1"
             >
-              Learn More
+              View Details
             </Button>
-
             <Button
               variant="outline"
-              className="flex-1 rounded-full border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+              size="icon"
               asChild
             >
-              <Link href={githubUrl} target="_blank" rel="noopener noreferrer">
-                <Github className="mr-2 h-4 w-4" />
-                View Code
-              </Link>
+              <a href={githubUrl} target="_blank" rel="noopener noreferrer">
+                <Github className="h-4 w-4" />
+              </a>
             </Button>
           </div>
         </CardContent>
@@ -242,12 +251,13 @@ export default function ProjectCard({
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
         <DialogContent className="sm:max-w-[600px] max-h-[80vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="text-xl text-primary">{modalContent.title}</DialogTitle>
+            <DialogTitle>{modalContent.title}</DialogTitle>
           </DialogHeader>
-          <DialogDescription>{modalContent.content}</DialogDescription>
+          <DialogDescription asChild>
+            <div>{modalContent.content}</div>
+          </DialogDescription>
           <DialogClose className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
             <X className="h-4 w-4" />
-            <span className="sr-only">Close</span>
           </DialogClose>
         </DialogContent>
       </Dialog>
