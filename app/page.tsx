@@ -560,7 +560,7 @@ export default function Home() {
         </div>
       </section> */}
 
-      <section id="blog" className="py-16 px-4 md:px-10 bg-muted/30">
+      {/* <section id="blog" className="py-16 px-4 md:px-10 bg-muted/30">
         <div className="container mx-auto">
           <h2 className="text-3xl md:text-5xl font-bold text-center mb-4">
             Latest <span className="text-primary">Articles</span>
@@ -602,7 +602,7 @@ export default function Home() {
             </Link>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Contact Section */}
       <section id="contact" className="py-16 px-4 md:px-10">

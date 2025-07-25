@@ -3,6 +3,14 @@
 import React, { useEffect, useState } from "react"
 import { useTheme } from "next-themes"
 
+// TypeScript declarations for particles.js globals
+declare global {
+  interface Window {
+    particlesJS?: any
+    pJSDom?: any[]
+  }
+}
+
 export default function ParticlesBackground() {
   const [isMounted, setIsMounted] = useState(false)
   const { theme } = useTheme()
