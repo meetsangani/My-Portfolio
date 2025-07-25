@@ -153,7 +153,7 @@ export default function Home() {
             <br />
             Junior MERN Stack Developer
             <br />
-            2025 - Present
+            Dec - 2024 - Jun - 2025 
             <br />
             • Developing full-stack web applications using MongoDB, Express.js, React.js, and Node.js
             <br />
