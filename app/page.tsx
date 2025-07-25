@@ -128,9 +128,7 @@ export default function Home() {
         <div className="w-full md:w-1/2 flex justify-center md:order-2 mb-8 md:mb-0">
           {/* Simple Profile Image Container */}
           <div className="relative">
-            {/* Main Image Container */}
-            <div className="relative w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-primary/20 shadow-2xl">
-              {/* Profile Image */}
+            <div className="relative w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-primary/20 shadow-2xl">           
               <Image
                 src="/mypic.jpg"
                 alt="Meet Sangani profile picture"
