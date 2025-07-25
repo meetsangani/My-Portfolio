@@ -153,7 +153,7 @@ export default function Home() {
             <br />
             Junior MERN Stack Developer
             <br />
-            Dec - 2024 - Jun - 2025 
+            Dec - 2023 - Jun - 2024 
             <br />
             • Developing full-stack web applications using MongoDB, Express.js, React.js, and Node.js
             <br />
@@ -269,7 +269,7 @@ export default function Home() {
                   <h3 className="text-lg font-semibold">Junior MERN Stack Developer</h3>
                 </div>
                 <p className="text-sm text-muted-foreground mb-1">Imbuesoft LLP</p>
-                <p className="text-xs text-muted-foreground mb-2">2025 - Present</p>
+                <p className="text-xs text-muted-foreground mb-2">Dec 2023 - Jun 2024</p>
                 <p className="text-sm">Working on full-stack web applications using MongoDB, Express.js, React.js, and Node.js. Building RESTful APIs and collaborating with UI/UX designers.</p>
               </div>
               
@@ -297,7 +297,7 @@ export default function Home() {
             {/* Desktop timeline - hide on small screens */}
             <div className="hidden sm:block">
               <TimelineItem 
-                year="2025 - Present"
+                year="Dec 2023 - Jun 2024"
                 title="Junior MERN Stack Developer"
                 organization="Imbuesoft LLP"
                 description="Working on full-stack web applications using MongoDB, Express.js, React.js, and Node.js. Building RESTful APIs and collaborating with UI/UX designers."
