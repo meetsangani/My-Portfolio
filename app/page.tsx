@@ -33,11 +33,14 @@ import RadialSkill from "@/components/radial-skill"
 import ContactForm from "@/components/contact-form"
 import ScrollToTop from "@/components/scroll-to-top"
 import LoadingAnimation from "@/components/loading-animation"
+import Chatbot from "@/components/chatbot"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import BlogCard from "@/components/blog-card"
 import TimelineItem from "@/components/timeline-item"
 import ResumeModal from "@/components/resume-modal"
-import { useState } from "react"
+import { useState, lazy, Suspense, useCallback } from "react"
+
+const LazyContactForm = lazy(() => import('@/components/contact-form'))
 
 export default function Home() {
   const [projectFilter, setProjectFilter] = useState("all");
@@ -84,7 +87,7 @@ export default function Home() {
     {
       id: 4,
       title: "NAAC-LLM-REPORT",
-      description: "Mobile e-commerce application built with React Native, featuring product browsing, cart management, and secure checkout.",
+      description: "An LLM-powered mobile application to assist with NAAC report assessment, providing insights and answering queries using a chat-like interface.",
       image: "/NAAC.png", // Make sure this image exists
       modalId: "NAAC-modal",
       githubUrl: "https://github.com/meetsangani/LLM-NACC-REPORT-ASSSSOR",
@@ -97,6 +100,21 @@ export default function Home() {
     ? projects 
     : projects.filter(project => project.categories.includes(projectFilter));
 
+  // Event handler for project filter
+  const handleProjectFilter = useCallback((filter: string) => {
+    setProjectFilter(filter)
+  }, [])
+
+  const handleResumeClick = () => {
+    console.log("Resume button clicked")
+    setShowResumeModal(true)
+  }
+
+  const handleResumeClose = () => {
+    console.log("Resume modal closed")
+    setShowResumeModal(false)
+  }
+
   return (
     <main className="relative min-h-screen overflow-hidden">
       <LoadingAnimation />
@@ -108,14 +126,19 @@ export default function Home() {
         className="relative min-h-screen flex flex-col md:flex-row items-center justify-between px-4 md:px-10 pt-24 pb-16"
       >
         <div className="w-full md:w-1/2 flex justify-center md:order-2 mb-8 md:mb-0">
-          <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary/20 shadow-xl">
-            <Image
-              src="/mypic.jpg"
-              alt="Meet Sangani profile picture"
-              fill
-              className="object-cover"
-              priority
-            />
+          {/* Simple Profile Image Container */}
+          <div className="relative">
+            {/* Main Image Container */}
+            <div className="relative w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-primary/20 shadow-2xl">
+              {/* Profile Image */}
+              <Image
+                src="/mypic.jpg"
+                alt="Meet Sangani profile picture"
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
           </div>
         </div>
 
@@ -132,7 +155,7 @@ export default function Home() {
             <br />
             Junior MERN Stack Developer
             <br />
-            2023 - Present
+            2025 - Present
             <br />
             • Developing full-stack web applications using MongoDB, Express.js, React.js, and Node.js
             <br />
@@ -189,7 +212,7 @@ export default function Home() {
             </Link>
             <Button 
               className="rounded-full px-6 shadow-lg hover:shadow-primary/50 transition-all flex items-center gap-2"
-              onClick={() => setShowResumeModal(true)}
+              onClick={handleResumeClick}
             >
               <Download className="h-4 w-4" /> View Resume
             </Button>
@@ -199,7 +222,7 @@ export default function Home() {
 
       {/* Resume Modal */}
       {showResumeModal && (
-        <ResumeModal onClose={() => setShowResumeModal(false)} />
+        <ResumeModal onClose={handleResumeClose} />
       )}
 
       {/* About Section */}
@@ -248,7 +271,7 @@ export default function Home() {
                   <h3 className="text-lg font-semibold">Junior MERN Stack Developer</h3>
                 </div>
                 <p className="text-sm text-muted-foreground mb-1">Imbuesoft LLP</p>
-                <p className="text-xs text-muted-foreground mb-2">2023 - Present</p>
+                <p className="text-xs text-muted-foreground mb-2">2025 - Present</p>
                 <p className="text-sm">Working on full-stack web applications using MongoDB, Express.js, React.js, and Node.js. Building RESTful APIs and collaborating with UI/UX designers.</p>
               </div>
               
@@ -276,7 +299,7 @@ export default function Home() {
             {/* Desktop timeline - hide on small screens */}
             <div className="hidden sm:block">
               <TimelineItem 
-                year="2023 - Present"
+                year="2025 - Present"
                 title="Junior MERN Stack Developer"
                 organization="Imbuesoft LLP"
                 description="Working on full-stack web applications using MongoDB, Express.js, React.js, and Node.js. Building RESTful APIs and collaborating with UI/UX designers."
@@ -494,20 +517,18 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Projects Section */}
       <section id="projects" className="py-16 px-4 md:px-10 bg-muted/30">
         <div className="container mx-auto">
           <h2 className="text-3xl md:text-5xl font-bold text-center mb-12">
             Latest <span className="text-primary">Projects</span>
           </h2>
           
-          {/* Project Filters */}
           <div className="flex flex-wrap justify-center gap-3 mb-8">
             {projectCategories.map((category) => (
               <Button
                 key={category.id}
                 variant={projectFilter === category.id ? "default" : "outline"}
-                onClick={() => setProjectFilter(category.id)}
+                onClick={() => handleProjectFilter(category.id)}
                 className="rounded-full"
               >
                 {category.name}
@@ -515,7 +536,6 @@ export default function Home() {
             ))}
           </div>
           
-          {/* Projects Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredProjects.map(project => (
               <ProjectCard
@@ -532,7 +552,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
+      {/* Testimonials Section
       <section id="testimonials" className="py-16 px-4 md:px-10">
         <div className="container mx-auto">
           <h2 className="text-3xl md:text-5xl font-bold text-center mb-12">
@@ -540,9 +560,8 @@ export default function Home() {
           </h2>
           
         </div>
-      </section>
+      </section> */}
 
-      {/* Blog Section */}
       <section id="blog" className="py-16 px-4 md:px-10 bg-muted/30">
         <div className="container mx-auto">
           <h2 className="text-3xl md:text-5xl font-bold text-center mb-4">
@@ -637,7 +656,9 @@ export default function Home() {
             </div>
 
             <div className="w-full md:w-1/2">
-              <ContactForm />
+              <Suspense fallback={<div>Loading...</div>}>
+                <LazyContactForm />
+              </Suspense>
             </div>
           </div>
         </div>
@@ -651,6 +672,7 @@ export default function Home() {
       </footer>
 
       <ScrollToTop />
+      <Chatbot />
     </main>
   )
 }

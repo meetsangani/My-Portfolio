@@ -7,16 +7,17 @@ import { useMobile } from "@/hooks/use-mobile"
 interface RadialSkillProps {
   name: string
   percentage: number
+  color?: string
 }
 
-export default function RadialSkill({ name, percentage }: RadialSkillProps) {
+export default function RadialSkill({ name, percentage, color = "text-primary" }: RadialSkillProps) {
   const [progress, setProgress] = useState(0)
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
   })
   
-  const isMobile = useMobile(640)
+  const isMobile = useMobile()
   
   // Responsive dimensions
   const size = isMobile ? 24 : 32
@@ -37,51 +38,45 @@ export default function RadialSkill({ name, percentage }: RadialSkillProps) {
   // Calculate the stroke dash offset based on the progress
   const circumference = 2 * Math.PI * radius
   const strokeDashoffset = circumference - (progress / 100) * circumference
+  const strokeDasharray = `${(percentage / 100) * circumference} ${circumference}`
 
   return (
     <div ref={ref} className="flex flex-col items-center">
-      <div className={`relative w-${size} h-${size} sm:w-32 sm:h-32`}>
-        <svg className="w-full h-full" viewBox="0 0 200 200">
+      <div className="relative w-24 h-24">
+        <svg className="w-24 h-24 transform -rotate-90" viewBox="0 0 100 100">
           {/* Background circle */}
           <circle
-            cx="100"
-            cy="100"
-            r={radius}
-            fill="none"
+            cx="50"
+            cy="50"
+            r="45"
             stroke="currentColor"
-            strokeWidth={strokeWidth}
-            className="text-muted opacity-20"
+            strokeWidth="8"
+            fill="transparent"
+            className="text-muted-foreground/20"
           />
 
           {/* Progress circle */}
           <circle
-            cx="100"
-            cy="100"
-            r={radius}
-            fill="none"
+            cx="50"
+            cy="50"
+            r="45"
             stroke="currentColor"
-            strokeWidth={strokeWidth}
+            strokeWidth="8"
+            fill="transparent"
+            strokeDasharray={strokeDasharray}
             strokeLinecap="round"
-            strokeDasharray={circumference}
-            strokeDashoffset={strokeDashoffset}
-            className="text-primary transform -rotate-90 origin-center transition-all duration-1000 ease-out"
+            className={color}
+            style={{
+              transition: "stroke-dasharray 0.6s ease-in-out",
+            }}
           />
-
-          {/* Percentage text */}
-          <text
-            x="100"
-            y="100"
-            textAnchor="middle"
-            dominantBaseline="middle"
-            className={fontSize + " font-bold"}
-            fill="currentColor"
-          >
-            {progress}%
-          </text>
         </svg>
+        <div className="absolute inset-0 flex items-center justify-center">
+          <span className="text-lg font-semibold">{progress}%</span>
+        </div>
       </div>
 
-      <span className="mt-2 sm:mt-4 text-sm sm:text-base font-medium text-center">{name}</span>
+      <span className="mt-2 text-sm font-medium text-center">{name}</span>
     </div>
   )
 }

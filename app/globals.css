@@ -60,7 +60,6 @@
 }
 
 @layer utilities {
-  /* Custom animations */
   .animate-fadeIn {
     animation: fadeIn 1s ease forwards;
   }
@@ -81,7 +80,6 @@
     animation: slideBottom 1s ease forwards;
   }
   
-  /* Navbar line animation */
   .nav-link {
     position: relative;
   }
@@ -108,7 +106,6 @@
     opacity: 1;
   }
   
-  /* Desktop nav line animation */
   .desktop-nav-link {
     position: relative;
   }
@@ -134,7 +131,6 @@
     opacity: 1;
   }
   
-  /* Loading animations */
   .loading-circle {
     width: 60px;
     height: 60px;
@@ -149,7 +145,6 @@
     animation: loadingDots 1.5s infinite;
   }
   
-  /* Carousel navigation hover effects */
   .carousel-nav-hover {
     transition: all 0.2s ease;
   }
@@ -160,7 +155,6 @@
   }
 }
 
-/* Keyframe animations */
 @keyframes fadeIn {
   0% {
     opacity: 0;
@@ -214,7 +208,6 @@
   }
 }
 
-/* Loading animation keyframes */
 @keyframes spinner {
   to {
     transform: rotate(360deg);
@@ -250,20 +243,43 @@
   }
 }
 
-/* Smooth scrolling */
+
 html {
   scroll-behavior: smooth;
 }
 
-/* Prevent horizontal overflow */
 body {
   overflow-x: hidden;
   max-width: 100vw;
 }
 
-/* Fix for iOS 100vh issue */
 @supports (-webkit-touch-callout: none) {
   .min-h-screen {
     min-height: -webkit-fill-available;
   }
+}
+
+.backdrop-blur-sm {
+  backdrop-filter: blur(4px);
+}
+
+.gradient-border {
+  position: relative;
+  background: linear-gradient(45deg, #06b6d4, #3b82f6, #8b5cf6, #ec4899);
+  border-radius: 50%;
+  padding: 4px;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 4px;
+  background: linear-gradient(45deg, #06b6d4, #3b82f6, #8b5cf6, #ec4899);
+  border-radius: 50%;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: xor;
+}
+
+@media (max-width: 768px) {
 }

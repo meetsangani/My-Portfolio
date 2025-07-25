@@ -167,6 +167,36 @@ export default function ProjectCard({
             </>
           ),
         }
+      case "NAAC-modal":
+        return {
+          title: "NAAC LLM Report Assessor",
+          content: (
+            <>
+              <h3 className="text-lg font-semibold mt-4 mb-2">Project Overview:</h3>
+              <p className="mb-4">
+                This project is an innovative mobile application leveraging Large Language Models (LLMs) 
+                to streamline the NAAC accreditation process. It acts as an intelligent assistant for 
+                understanding guidelines, assessing report components, and answering queries related to NAAC.
+              </p>
+
+              <h3 className="text-lg font-semibold mt-4 mb-2">Key Features:</h3>
+              <ul className="list-disc pl-5 space-y-1 mb-4">
+                <li>Interactive chat interface for queries.</li>
+                <li>LLM-powered analysis of report sections.</li>
+                <li>Guidance on NAAC criteria and parameters.</li>
+                <li>Built with React Native for cross-platform mobile access.</li>
+              </ul>
+
+              <h3 className="text-lg font-semibold mt-4 mb-2">Technologies Used:</h3>
+              <div className="flex flex-wrap gap-2">
+                <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">React Native</span>
+                <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Python (Backend)</span>
+                <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">LLM Integration</span>
+                <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Flask/FastAPI</span>
+              </div>
+            </>
+          ),
+        }
       default:
         return {
           title: "Project Details",

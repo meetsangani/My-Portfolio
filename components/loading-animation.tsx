@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 
 export default function LoadingAnimation() {
-  const [isVisible, setIsVisible] = useState(true)
+  const [isLoading, setIsLoading] = useState(true)
   const [loadingPercentage, setLoadingPercentage] = useState(0)
 
   useEffect(() => {
@@ -20,7 +20,7 @@ export default function LoadingAnimation() {
 
     // Hide the loading animation after a delay
     const timer = setTimeout(() => {
-      setIsVisible(false)
+      setIsLoading(false)
     }, 2000)
 
     return () => {
@@ -29,7 +29,7 @@ export default function LoadingAnimation() {
     }
   }, [])
 
-  if (!isVisible) return null
+  if (!isLoading) return null
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-background">

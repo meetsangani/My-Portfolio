@@ -7,7 +7,6 @@ const config = {
     "./components/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
-    "*.{js,ts,jsx,tsx,mdx}",
   ],
   prefix: "",
   theme: {
@@ -68,20 +67,51 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
-        "navbar-line-in": {
-          from: { width: "0", opacity: "0" },
-          to: { width: "100%", opacity: "1" },
+        "fade-in": {
+          "0%": { opacity: "0", transform: "translateY(10px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
         },
-        "navbar-line-out": {
-          from: { width: "100%", opacity: "1" },
-          to: { width: "0", opacity: "0" },
+        "typing": {
+          "0%": { width: "0" },
+          "100%": { width: "100%" },
+        },
+        "blink": {
+          "0%, 50%": { opacity: "1" },
+          "51%, 100%": { opacity: "0" },
+        },
+        "float": {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
+        "modal-in": {
+          "0%": { opacity: "0", transform: "scale(0.9)" },
+          "100%": { opacity: "1", transform: "scale(1)" },
+        },
+        "modal-out": {
+          "0%": { opacity: "1", transform: "scale(1)" },
+          "100%": { opacity: "0", transform: "scale(0.9)" },
+        },
+        "backdrop-in": {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        "backdrop-out": {
+          "0%": { opacity: "1" },
+          "100%": { opacity: "0" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "navbar-line-in": "navbar-line-in 0.3s ease forwards",
-        "navbar-line-out": "navbar-line-out 0.3s ease forwards",
+        "fade-in": "fade-in 0.3s ease-out",
+        "typing": "typing 3.5s steps(40, end)",
+        "blink": "blink 1s infinite",
+        "float": "float 3s ease-in-out infinite",
+        "pulse-slow": "pulse 3s ease-in-out infinite",
+        "modal-in": "modal-in 0.2s ease-out",
+        "modal-out": "modal-out 0.2s ease-in",
+        "backdrop-in": "backdrop-in 0.2s ease-out",
+        "backdrop-out": "backdrop-out 0.2s ease-in",
       },
     },
   },
