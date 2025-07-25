@@ -1,5 +1,6 @@
 "use client"
 
+import React, { useState, lazy, Suspense, useCallback } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -38,7 +39,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import BlogCard from "@/components/blog-card"
 import TimelineItem from "@/components/timeline-item"
 import ResumeModal from "@/components/resume-modal"
-import { useState, lazy, Suspense, useCallback } from "react"
 
 const LazyContactForm = lazy(() => import('@/components/contact-form'))
 
