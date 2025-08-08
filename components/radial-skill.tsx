@@ -19,7 +19,6 @@ export default function RadialSkill({ name, percentage, color = "text-primary" }
   
   const isMobile = useMobile()
   
-  // Responsive dimensions
   const size = isMobile ? 24 : 32
   const radius = isMobile ? 60 : 70
   const strokeWidth = isMobile ? 6 : 8
@@ -35,7 +34,6 @@ export default function RadialSkill({ name, percentage, color = "text-primary" }
     }
   }, [inView, percentage])
 
-  // Calculate the stroke dash offset based on the progress
   const circumference = 2 * Math.PI * radius
   const strokeDashoffset = circumference - (progress / 100) * circumference
   const strokeDasharray = `${(percentage / 100) * circumference} ${circumference}`
@@ -44,7 +42,7 @@ export default function RadialSkill({ name, percentage, color = "text-primary" }
     <div ref={ref} className="flex flex-col items-center">
       <div className="relative w-24 h-24">
         <svg className="w-24 h-24 transform -rotate-90" viewBox="0 0 100 100">
-          {/* Background circle */}
+          
           <circle
             cx="50"
             cy="50"
@@ -55,7 +53,6 @@ export default function RadialSkill({ name, percentage, color = "text-primary" }
             className="text-muted-foreground/20"
           />
 
-          {/* Progress circle */}
           <circle
             cx="50"
             cy="50"

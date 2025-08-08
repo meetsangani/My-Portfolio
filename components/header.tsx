@@ -15,7 +15,6 @@ export default function Header() {
   const isMobile = useMobile()
   const [activeSection, setActiveSection] = useState("home")
 
-  // Handle scroll event to add shadow to header and track active section
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
@@ -24,7 +23,6 @@ export default function Header() {
         setIsScrolled(false)
       }
 
-      // Track active section based on scroll position
       const sections = document.querySelectorAll('section[id]')
       let currentSection = "home"
       
@@ -43,7 +41,6 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  // Close menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       const target = e.target as HTMLElement
@@ -56,14 +53,12 @@ export default function Header() {
     return () => document.removeEventListener("click", handleClickOutside)
   }, [isMenuOpen])
 
-  // Close menu when window is resized to desktop
   useEffect(() => {
     if (!isMobile && isMenuOpen) {
       setIsMenuOpen(false)
     }
   }, [isMobile, isMenuOpen])
 
-  // Navigation links
   const navLinks = [
     { href: "#home", label: "Home" },
     { href: "#aboutme", label: "About" },
@@ -73,13 +68,11 @@ export default function Header() {
     { href: "#contact", label: "Contact" },
   ]
 
-  // Check if link is active
   const isActive = (href: string) => {
     const sectionId = href.replace('#', '')
     return sectionId === activeSection
   }
 
-  // Handle link click (close mobile menu)
   const handleLinkClick = () => {
     if (isMobile) {
       setIsMenuOpen(false)
@@ -97,7 +90,6 @@ export default function Header() {
           Portfolio
         </Link>
 
-        {/* Desktop Navigation */}
         <nav className={`hidden md:flex items-center space-x-6`}>
           {navLinks.map((link, index) => (
             <Link
@@ -115,7 +107,6 @@ export default function Header() {
           <ModeToggle />
         </nav>
 
-        {/* Mobile Navigation Toggle */}
         <div className="flex items-center md:hidden">
           <ModeToggle />
           <Button
@@ -130,7 +121,6 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile Navigation Menu */}
       {isMobile && (
         <nav
           className={`md:hidden absolute top-full left-0 w-full bg-background/95 backdrop-blur-sm shadow-md transition-all duration-300 overflow-hidden ${

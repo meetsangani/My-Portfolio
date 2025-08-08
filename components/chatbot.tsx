@@ -42,12 +42,10 @@ export default function Chatbot({ className }: ChatbotProps) {
   }, [messages])
 
   const getBotResponse = async (userMessage: string): Promise<string> => {
-    // Simulate API delay
     await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 2000))
 
     const lowerMessage = userMessage.toLowerCase()
 
-    // Simple keyword-based responses (you can replace with actual AI API)
     if (lowerMessage.includes('skills') || lowerMessage.includes('technology') || lowerMessage.includes('tech')) {
       return "Meet is skilled in MERN Stack (MongoDB, Express.js, React.js, Node.js), JavaScript, Python, Android development, and web technologies. He also has experience with modern frameworks and tools."
     }
@@ -76,7 +74,6 @@ export default function Chatbot({ className }: ChatbotProps) {
       return "Meet offers various services including MERN Stack Development, Android App Development, Web Development, UI/UX Design, DevOps Services, and Technical Consultation. Which service would you like to know more about?"
     }
 
-    // Default response
     return "That's a great question! I can help you learn about Meet's skills, projects, experience, education, or services. You can also ask me how to contact him. What would you like to know?"
   }
 

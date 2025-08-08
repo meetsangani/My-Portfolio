@@ -29,7 +29,6 @@ export default function ResumeModal({ onClose }: ResumeModalProps) {
     return () => window.removeEventListener("keydown", handleKeyDown)
   }, [onClose, isFullScreen])
 
-  // Check if PDF exists and is accessible
   useEffect(() => {
     const checkPDFExists = async () => {
       try {
@@ -79,7 +78,6 @@ export default function ResumeModal({ onClose }: ResumeModalProps) {
   const openInNewTab = () => {
     const newWindow = window.open("/MEET_RESUME.pdf", "_blank")
     if (!newWindow) {
-      // Fallback if popup blocked
       window.location.href = "/MEET_RESUME.pdf"
     }
   }
@@ -97,7 +95,6 @@ export default function ResumeModal({ onClose }: ResumeModalProps) {
   const retryLoad = () => {
     setIsLoading(true)
     setIframeError(false)
-    // Force reload the iframe
     const iframe = document.getElementById('resume-iframe') as HTMLIFrameElement
     if (iframe) {
       iframe.src = iframe.src

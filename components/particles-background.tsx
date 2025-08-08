@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from "react"
 import { useTheme } from "next-themes"
 
-// TypeScript declarations for particles.js globals
 declare global {
   interface Window {
     particlesJS?: any
@@ -18,7 +17,6 @@ export default function ParticlesBackground() {
   useEffect(() => {
     setIsMounted(true)
 
-    // Load particles.js script dynamically
     const script = document.createElement("script")
     script.src = "https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"
     script.async = true
@@ -35,10 +33,7 @@ export default function ParticlesBackground() {
       if (script.parentNode) {
         script.parentNode.removeChild(script)
       }
-      // Clean up particles if needed
       if (window.pJSDom && window.pJSDom.length) {
-        // This would be the ideal cleanup, but particles.js doesn't provide a clean way
-        // So we'll just remove the canvas
         const canvas = document.querySelector("#particles-js canvas")
         if (canvas && canvas.parentNode) {
           canvas.parentNode.removeChild(canvas)

@@ -46,7 +46,6 @@ export default function Home() {
   const [projectFilter, setProjectFilter] = useState("all");
   const [showResumeModal, setShowResumeModal] = useState(false);
   
-  // Project categories for filtering
   const projectCategories = [
     { id: "all", name: "All Projects" },
     { id: "web", name: "Web" },
@@ -54,13 +53,12 @@ export default function Home() {
     { id: "mern", name: "MERN Stack" },
   ];
   
-  // Project data with categories
   const projects = [
     {
       id: 1,
       title: "TaskAssigner",
       description: "A comprehensive task management system with time tracking and task assignment features built with MERN stack.",
-      image: "/TaskManager.png", // Make sure this image exists
+      image: "/TaskManager.png", 
       modalId: "taskassigner-modal",
       githubUrl: "https://github.com/meetsangani/TaskAssigner",
       categories: ["web", "mern"],
@@ -69,7 +67,7 @@ export default function Home() {
       id: 2,
       title: "CODO",
       description: "A versatile MERN stack application for code recording with real-time editing, multiple language support, and AI assistance.",
-      image: "/CODO_RECORDING.mp4",  // Adding the leading slash to correctly reference from public folder
+      image: "/CODO_RECORDING.mp4",  
       modalId: "codo-modal",
       githubUrl: "https://github.com/meetsangani/Online-Compiler",
       isVideo: true,
@@ -79,7 +77,7 @@ export default function Home() {
       id: 3,
       title: "Portfolio Website",
       description: "Personal portfolio website showcasing my skills, projects and services built with HTML, CSS and JavaScript.",
-      image: "/portfolio.png", // Make sure this image exists
+      image: "/portfolio.png",
       modalId: "portfolio-modal",
       githubUrl: "https://github.com/meetsangani/My-Portfolio",
       categories: ["web"],
@@ -88,19 +86,17 @@ export default function Home() {
       id: 4,
       title: "NAAC-LLM-REPORT",
       description: "An LLM-powered mobile application to assist with NAAC report assessment, providing insights and answering queries using a chat-like interface.",
-      image: "/NAAC.png", // Make sure this image exists
+      image: "/NAAC.png",
       modalId: "NAAC-modal",
       githubUrl: "https://github.com/meetsangani/LLM-NACC-REPORT-ASSSSOR",
       categories: ["mobile"],
     },
   ];
-  
-  // Filter projects based on selected category
+
   const filteredProjects = projectFilter === "all" 
     ? projects 
     : projects.filter(project => project.categories.includes(projectFilter));
 
-  // Event handler for project filter
   const handleProjectFilter = useCallback((filter: string) => {
     setProjectFilter(filter)
   }, [])
@@ -120,13 +116,12 @@ export default function Home() {
       <LoadingAnimation />
       <ParticlesBackground />
 
-      {/* Home Section */}
       <section
         id="home"
         className="relative min-h-screen flex flex-col md:flex-row items-center justify-between px-4 md:px-10 pt-24 pb-16"
       >
         <div className="w-full md:w-1/2 flex justify-center md:order-2 mb-8 md:mb-0">
-          {/* Simple Profile Image Container */}
+          
           <div className="relative">
             <div className="relative w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-primary/20 shadow-2xl">           
               <Image
@@ -218,12 +213,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Resume Modal */}
       {showResumeModal && (
         <ResumeModal onClose={handleResumeClose} />
       )}
 
-      {/* About Section */}
       <section id="aboutme" className="py-16 px-4 md:px-10">
         <div className="container mx-auto">
           <h2 className="text-3xl md:text-5xl font-bold text-center mb-12">
@@ -250,7 +243,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Timeline Section */}
       <section id="timeline" className="py-16 px-4 md:px-10">
         <div className="container mx-auto">
           <h2 className="text-3xl md:text-5xl font-bold text-center mb-12">
@@ -258,10 +250,8 @@ export default function Home() {
           </h2>
 
           <div className="relative max-w-3xl mx-auto">
-            {/* Timeline center line - hidden on very small screens */}
             <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-primary/50 hidden sm:block"></div>
             
-            {/* Mobile timeline - show only on very small screens */}
             <div className="sm:hidden space-y-8 mb-8">
               <div className="bg-muted/30 rounded-lg p-4 border-l-4 border-primary">
                 <div className="flex items-center mb-2">
@@ -294,7 +284,6 @@ export default function Home() {
               </div>
             </div>
             
-            {/* Desktop timeline - hide on small screens */}
             <div className="hidden sm:block">
               <TimelineItem 
                 year="Dec 2023 - Jun 2024"
@@ -327,7 +316,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Services Section */}
       <section id="services" className="py-16 px-4 md:px-10 bg-muted/30">
         <div className="container mx-auto">
           <h2 className="text-3xl md:text-5xl font-bold text-center mb-12">
@@ -380,7 +368,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Skills Section */}
       <section id="skills" className="py-16 px-4 md:px-10">
         <div className="container mx-auto">
           <h2 className="text-3xl md:text-5xl font-bold text-center mb-12">
@@ -393,7 +380,7 @@ export default function Home() {
             </TabsList>
             
             <TabsContent value="technical" className="w-full">
-              {/* Mobile view for technical skills */}
+              
               <div className="grid grid-cols-2 gap-3 md:hidden">
                 <div className="flex flex-col items-center justify-center p-3 bg-muted/30 rounded-lg">
                   <FaHtml5 className="text-orange-500 text-3xl mb-1" />
@@ -429,7 +416,6 @@ export default function Home() {
                 </div>
               </div>
               
-              {/* Desktop view for technical skills */}
               <div className="hidden md:grid grid-cols-1 md:grid-cols-5 gap-4 max-w-5xl mx-auto">
                 <div className="flex flex-col items-center justify-center p-4 bg-muted/30 rounded-lg">
                   <FaHtml5 className="text-orange-500 text-4xl mb-2" />
@@ -471,7 +457,7 @@ export default function Home() {
             </TabsContent>
             
             <TabsContent value="professional" className="w-full">
-              {/* Mobile view for professional skills */}
+              
               <div className="grid grid-cols-2 gap-3 md:hidden">
                 <div className="flex flex-col items-center justify-center p-3 bg-muted/30 rounded-lg">
                   <BsChatSquareDots className="text-primary text-3xl mb-1" />
@@ -491,7 +477,6 @@ export default function Home() {
                 </div>
               </div>
               
-              {/* Desktop view for professional skills */}
               <div className="hidden md:grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto">
                 <div className="flex flex-col items-center justify-center p-4 bg-muted/30 rounded-lg">
                   <BsChatSquareDots className="text-primary text-4xl mb-2" />
@@ -604,7 +589,6 @@ export default function Home() {
         </div>
       </section> */}
 
-      {/* Contact Section */}
       <section id="contact" className="py-16 px-4 md:px-10">
         <div className="container mx-auto">
           <h2 className="text-3xl md:text-5xl font-bold text-center mb-12">
@@ -662,7 +646,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="py-6 bg-background border-t">
         <div className="container mx-auto text-center">
           <p>Developed by Meet Sangani ©{new Date().getFullYear()}</p>

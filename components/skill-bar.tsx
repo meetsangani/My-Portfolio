@@ -12,8 +12,8 @@ interface SkillBarProps {
 }
 
 const SkillBar: React.FC<SkillBarProps> = ({ name, percentage, icon, color }) => {
-  const isMobile = useMobile(640); // Check for small mobile screens
-  
+  const isMobile = useMobile(); 
+
   const getIcon = () => {
     switch (icon.toLowerCase()) {
       case "html":

@@ -35,15 +35,13 @@ export default function ProjectCard({
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
 
-  // Updated images for TaskAssigner slider with fallback
   const taskAssignerImages = [
     "/TaskManager.png",
     "/TaskDashboard.png", 
     "/learning.png",
     "/HrMainScreen.png"
-  ].filter(Boolean) // Remove any undefined/null values
+  ].filter(Boolean) 
 
-  // Modal content based on modalId
   const getModalContent = () => {
     switch (modalId) {
       case "taskassigner-modal":
@@ -51,7 +49,6 @@ export default function ProjectCard({
           title: "TaskAssigner Project",
           content: (
             <>
-              {/* Slider for TaskAssigner */}
               <div className="mb-6">
                 <Carousel className="w-full max-w-2xl mx-auto relative">
                   <CarouselContent>

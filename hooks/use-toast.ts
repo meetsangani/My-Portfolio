@@ -1,6 +1,5 @@
 "use client"
 
-// Inspired by react-hot-toast library
 import * as React from "react"
 
 import type {
@@ -9,7 +8,7 @@ import type {
 } from "@/components/ui/toast"
 
 const TOAST_LIMIT = 1
-const TOAST_REMOVE_DELAY = 8000 // Increased from 5000 to 8000 ms (8 seconds)
+const TOAST_REMOVE_DELAY = 8000
 
 type ToasterToast = ToastProps & {
   id: string
@@ -93,8 +92,6 @@ export const reducer = (state: State, action: Action): State => {
     case "DISMISS_TOAST": {
       const { toastId } = action
 
-      // ! Side effects ! - This could be extracted into a dismissToast() action,
-      // but I'll keep it here for simplicity
       if (toastId) {
         addToRemoveQueue(toastId)
       } else {
@@ -151,11 +148,8 @@ function toast({ ...props }: Toast & { duration?: number }) {
       toast: { ...props, id },
     })
   const dismiss = () => dispatch({ type: "DISMISS_TOAST", toastId: id })
-
-  // Use custom duration if provided
   const customDelay = props.duration || TOAST_REMOVE_DELAY
   
-  // Remove duration from props as it's not part of ToasterToast
   const { duration, ...restProps } = props
 
   dispatch({
@@ -170,7 +164,6 @@ function toast({ ...props }: Toast & { duration?: number }) {
     },
   })
 
-  // Set custom timeout for this specific toast
   if (customDelay !== TOAST_REMOVE_DELAY) {
     setTimeout(() => {
       dispatch({ type: "DISMISS_TOAST", toastId: id })

@@ -5,12 +5,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { CheckCircle2 } from "lucide-react"; // Import the check icon
+import { CheckCircle2 } from "lucide-react"; 
 
 export default function ContactForm() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false); // New state for tracking success
+  const [isSuccess, setIsSuccess] = useState(false); 
   const [formData, setFormData] = useState({
     from_name: "",
     from_email: "",
@@ -26,7 +26,7 @@ export default function ContactForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setIsSuccess(false); // Reset success state
+    setIsSuccess(false); 
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
@@ -44,7 +44,6 @@ export default function ContactForm() {
       const data = await response.json();
       
       if (data.success) {
-        // Show success toast with success variant
         toast({
           title: "Thank you!",
           description: "The form has been submitted successfully. We will reply to you soon!",
@@ -52,10 +51,8 @@ export default function ContactForm() {
           duration: 5000,
         });
         
-        // Set success state
         setIsSuccess(true);
         
-        // Reset form
         setFormData({
           from_name: "",
           from_email: "",
@@ -63,7 +60,6 @@ export default function ContactForm() {
           message: ""
         });
       } else {
-        // Show error toast
         toast({
           title: "Error",
           description: "Something went wrong. Please try again.",

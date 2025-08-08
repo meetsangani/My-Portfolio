@@ -7,7 +7,6 @@ import { ArrowUp } from "lucide-react"
 export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false)
 
-  // Throttle function to improve performance
   const throttle = useCallback((func: Function, delay: number) => {
     let timeoutId: NodeJS.Timeout
     let lastExecTime = 0

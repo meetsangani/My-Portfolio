@@ -24,7 +24,6 @@ interface ServiceCardProps {
 export default function ServiceCard({ icon, title, description, modalId }: ServiceCardProps) {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  // Modal content based on modalId
   const getModalContent = () => {
     switch (modalId) {
       case "mern-modal":

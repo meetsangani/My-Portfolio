@@ -7,7 +7,6 @@ export default function LoadingAnimation() {
   const [loadingPercentage, setLoadingPercentage] = useState(0)
 
   useEffect(() => {
-    // Increment percentage from 0 to 100
     const percentageInterval = setInterval(() => {
       setLoadingPercentage(prev => {
         if (prev >= 100) {
@@ -16,9 +15,8 @@ export default function LoadingAnimation() {
         }
         return prev + 1
       })
-    }, 20) // 20ms * 100 = 2000ms (2 seconds) total
+    }, 20) 
 
-    // Hide the loading animation after a delay
     const timer = setTimeout(() => {
       setIsLoading(false)
     }, 2000)
@@ -36,7 +34,6 @@ export default function LoadingAnimation() {
       <div className="relative flex flex-col items-center">
         <div className="flex items-center justify-center h-24 w-24 rounded-full border-4 border-primary relative overflow-hidden">
           <span className="text-3xl font-bold text-primary z-10">MS</span>
-          {/* Circular progress indicator */}
           <div 
             className="absolute bottom-0 left-0 bg-primary/20 w-full transition-all duration-300 ease-out"
             style={{ 
@@ -47,7 +44,6 @@ export default function LoadingAnimation() {
           />
         </div>
         
-        {/* Improved loading bar animation */}
         <div className="mt-6 w-64 h-2 bg-gray-200/30 rounded-full overflow-hidden backdrop-blur-sm">
           <div 
             className="h-full bg-gradient-to-r from-primary/60 to-primary transition-all duration-300 ease-out"
